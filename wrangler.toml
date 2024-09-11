@@ -96,6 +96,7 @@ routes = [{ pattern = "dropdrop.download", custom_domain = true }]
 [[r2_buckets]]
 binding = "SEND_BUCKET"
 bucket_name = "send"
+jurisdiction = "eu"
 
 # Bind another Worker service. Use this binding to call another Worker without network overhead.
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
