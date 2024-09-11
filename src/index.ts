@@ -24,7 +24,7 @@ export default {
                 const fileId = nanoid();
 
                 // Upload file to R2
-                await env.SEND_BUCKET.put(fileId, file.stream(), {
+                await env.SEND_BUCKET.put(`uploads/${fileId}`, file.stream(), {
                     httpMetadata: { contentType: mimeType },
                     customMetadata: {
                         fileName: file.name,
@@ -34,10 +34,9 @@ export default {
                 });
 
                 // Return the public URL
-                return new Response(
-                    `https://send.limpanlive.workers.dev/${fileId}`,
-                    { status: 201 },
-                );
+                return new Response(`https://dropdrop.download/${fileId}`, {
+                    status: 201,
+                });
             }
 
             if (request.method === "GET") {
@@ -53,7 +52,7 @@ export default {
                 const fileId = url.pathname.slice(1); // Get the fileId from the URL
 
                 // Fetch the file from R2
-                const file = await env.SEND_BUCKET.get(fileId);
+                const file = await env.SEND_BUCKET.get(`uploads/${fileId}`);
                 if (!file)
                     return new Response("File not found", { status: 404 });
 
