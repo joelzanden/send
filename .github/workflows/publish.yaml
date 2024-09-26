@@ -1,0 +1,25 @@
+name: Release send script
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get version from package.json
+        id: get_version
+        run: echo "version=$(jq -r .version package.json)" >> $GITHUB_ENV
+
+      - name: Rename send script
+        run: mv src/send.sh send
+
+      - name: Create Release with Hub
+        run: gh release create v${{ env.version }} 'send#Send v${{ env.version }}'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
