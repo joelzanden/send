@@ -4,6 +4,11 @@ import { nanoid } from "./lib/nanoid";
 export default {
 	async fetch(request, env) {
 		try {
+			const auth = request.headers.get("Authorization");
+			if (auth !== `Bearer ${env.DROP_DROP_API_KEY}`) {
+				return new Response("Unauthorized", { status: 401 });
+			}
+
 			if (request.method === "POST") {
 				// Parse multipart form data
 				const formData = await request.formData();
@@ -60,7 +65,8 @@ export default {
 				}
 
 				// Get the original file name from custom metadata
-				const fileName = file.customMetadata?.fileName || "downloaded-file";
+				const fileName =
+					file.customMetadata?.fileName || "downloaded-file";
 				const fileType =
 					file.customMetadata?.fileType || "application/octet-stream";
 				const headers = new Headers();
