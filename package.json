@@ -13,12 +13,12 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@cloudflare/workers-types": "^4.20241216.0",
-		"typescript": "^5.7.2",
-		"wrangler": "^3.96.0"
+		"@cloudflare/workers-types": "^4.20250109.0",
+		"typescript": "^5.7.3",
+		"wrangler": "^3.99.0"
 	},
 	"dependencies": {
-		"mime": "^4.0.4",
+		"mime": "^4.0.6",
 		"nanoid": "^5.0.9"
 	},
 	"trustedDependencies": ["@biomejs/biome", "esbuild", "workerd"]
