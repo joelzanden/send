@@ -29,7 +29,7 @@ if ! command -v curl >/dev/null 2>&1; then
 	exit 1
 fi
 
-file_size=$(stat -c%s "$1")
+file_size=$(stat -f%z "$1")  # Use -f%z for macOS
 if [ "$file_size" -gt "$MAX_SIZE" ]; then
 	echo "Error: File size exceeds $($MAX_MB)MB limit"
 	exit 1

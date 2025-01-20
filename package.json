@@ -1,6 +1,6 @@
 {
 	"name": "send",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"private": true,
 	"scripts": {
 		"deploy": "wrangler deploy",
@@ -15,11 +15,15 @@
 		"@biomejs/biome": "^1.9.4",
 		"@cloudflare/workers-types": "^4.20250109.0",
 		"typescript": "^5.7.3",
-		"wrangler": "^3.99.0"
+		"wrangler": "^3.103.2"
 	},
 	"dependencies": {
 		"mime": "^4.0.6",
 		"nanoid": "^5.0.9"
 	},
-	"trustedDependencies": ["@biomejs/biome", "esbuild", "workerd"]
+	"trustedDependencies": [
+		"@biomejs/biome",
+		"esbuild",
+		"workerd"
+	]
 }
